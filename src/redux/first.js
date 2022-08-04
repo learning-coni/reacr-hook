@@ -1,3 +1,5 @@
+import { createStore, combineReducers } from "react-redux";
+
 const createPolicy = (name, amount) => {
   return {
     type: "CREATE_POLICY",
@@ -52,3 +54,14 @@ const policies = (listOfPolicies = [], action) => {
   }
   return listOfPolicies;
 };
+
+const ourDepartment = combineReducers({
+  accounting: accounting,
+  claimHistory: claimHistory,
+  policies: policies,
+});
+
+const store = createStore(ourDepartment);
+store.dispatch(createPolicy("Alex", 20));
+
+console.log(store.getState());
